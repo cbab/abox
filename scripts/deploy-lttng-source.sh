@@ -38,8 +38,13 @@ git checkout $TOOLS_TAG
 ./bootstrap && ./configure && make -j4 && sudo make install
 sudo ldconfig
 cd ../babeltrace
-./bootstrap && ./configure && make -j4 && sudo make install
+export PYTHON="python3"
+export PYTHON_CONFIG="/usr/bin/python3-config"
+./bootstrap && ./configure --enable-python-bindings
+make -j4 && sudo make install
 sudo ldconfig
+# move into Debian specific dist-packages
+mv /usr/local/lib/python3.4/site-packages/* /usr/local/lib/python3.4/dist-packages/
 
 cat <<EOF >/etc/init/lttng-sessiond.conf
 description "LTTng 2.0 central tracing registry session daemon"
