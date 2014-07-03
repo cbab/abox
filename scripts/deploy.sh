@@ -10,8 +10,11 @@ TRACEVISORPORT=5000
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-#apt-get -y install git libavahi-client3 avahi-daemon libavahi-client-dev libavahi-common-dev make gcc curl
 apt-get -y install mongodb python3 git
+
+# Overwrite mongo config, restart to reload
+mv /home/vagrant/mongodb.conf /etc/mongodb.conf
+restart mongodb
 
 # Get analysis scripts
 cd /usr/local/src
@@ -20,5 +23,3 @@ git clone https://github.com/jdesfossez/lttng-analyses.git
 # Get tracevisor SSH key
 mkdir -p ~/.ssh
 curl -s http://${TRACEVISORIP}:${TRACEVISORPORT}/trace/api/v1.0/ssh|grep tracevisor | cut -d '"' -f2 | cut -d "\\" -f1 >> ~/.ssh/authorized_keys2
-
-
