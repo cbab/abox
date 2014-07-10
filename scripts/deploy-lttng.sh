@@ -9,4 +9,4 @@ fi
 apt-add-repository ppa:lttng/ppa
 
 apt-get update
-apt-get -y install lttng-modules-dkms lttng-tools python3-babeltrace
+apt-get -y install lttng-tools python3-babeltrace
