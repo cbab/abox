@@ -10,7 +10,7 @@ TRACEVISORPORT=5000
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get -y install mongodb python3 python3-dev swig2.0 git
+apt-get -y install mongodb python3 python3-dev python3-pymongo swig2.0 git
 
 # Overwrite mongo config, restart to reload
 mv /home/vagrant/mongodb.conf /etc/mongodb.conf
